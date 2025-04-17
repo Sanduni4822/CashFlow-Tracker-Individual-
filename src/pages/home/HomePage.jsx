@@ -27,13 +27,21 @@ const HomePage = () => {
           <StatCard 
             label="Income" 
             value="CA$3,995.89" 
-            icon={<FaArrowUp />} 
+            icon={
+              <div className="bg-green-100 p-2 rounded-full">
+                <FaArrowUp />
+              </div>
+            }
             color="text-green-600" 
           />
           <StatCard 
             label="Expenses" 
             value="CA$221.45" 
-            icon={<FaArrowDown />} 
+            icon={
+              <div className="bg-red-100 p-2 rounded-full">
+                <FaArrowDown />
+              </div>
+            }
             color="text-red-600" 
           />
         </div>
