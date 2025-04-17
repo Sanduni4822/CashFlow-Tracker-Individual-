@@ -10,21 +10,34 @@ const HomePage = () => {
   return (
     <div className="flex min-h-screen bg-gray-100">
       <Sidebar />
-      <main className="flex-1 p-10">
+
+      {/* Main content with equal small padding left and right */}
+      <main className="flex-1 px-4 max-w-4xl mx-auto">
         <div className="text-center mb-8">
           <h2 className="text-4xl font-extrabold text-blue-600">SpendWise</h2>
           <p className="text-gray-600">
             Effortlessly track your daily expenses and take control of your<br />
-             financial life
+            financial life
           </p>
         </div>
 
         <BalanceCard balance="+CA$3,774.44" />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <StatCard label="Income" value="CA$3,995.89" icon={<FaArrowUp />} color="text-green-600" />
-          <StatCard label="Expenses" value="CA$221.45" icon={<FaArrowDown />} color="text-red-600" />
+          <StatCard 
+            label="Income" 
+            value="CA$3,995.89" 
+            icon={<FaArrowUp />} 
+            color="text-green-600" 
+          />
+          <StatCard 
+            label="Expenses" 
+            value="CA$221.45" 
+            icon={<FaArrowDown />} 
+            color="text-red-600" 
+          />
         </div>
+
         <ActionsButtons />
         <CurrencySelector />
       </main>
