@@ -11,8 +11,8 @@ const HomePage = () => {
     <div className="flex min-h-screen bg-gray-100">
       <Sidebar />
 
-      {/* Main content with equal small padding left and right */}
-      <main className="flex-1 px-4 max-w-4xl mx-auto">
+      {/* Main content with smaller width */}
+      <main className="flex-1 px-8 py-8 max-w-2xl mx-auto">
         <div className="text-center mb-8">
           <h2 className="text-4xl font-extrabold text-blue-600">SpendWise</h2>
           <p className="text-gray-600">
