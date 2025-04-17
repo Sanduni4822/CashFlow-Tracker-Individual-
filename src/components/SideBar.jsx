@@ -5,7 +5,7 @@ import { FaHome, FaPlusCircle, FaChartBar, FaTags } from 'react-icons/fa';
 const Sidebar = () => {
   return (
     <aside className="w-64 bg-white shadow-md px-6 py-8 flex flex-col items-center">
-      <h1 className="text-2xl font-bold text-blue-600 mb-10 text-center">SpendWise</h1>
+      <h1 className="text-2xl font-bold text-black-600 mb-10 text-center">SpendWise</h1>
       <nav className="space-y-4 w-full">
         <NavItem icon={<FaHome />} text="Home" active />
         <NavItem icon={<FaPlusCircle />} text="Add Transaction" />
