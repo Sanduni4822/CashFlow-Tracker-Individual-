@@ -51,14 +51,17 @@ const CurrencySelector = () => {
             <div
               key={currency}
               onClick={() => handleSelect(currency)}
-              className={`p-2 flex justify-between items-center cursor-pointer hover:bg-blue-100 ${
+              className={`p-2 flex items-center cursor-pointer hover:bg-blue-100 ${
                 currency === selectedCurrency ? "bg-blue-50" : ""
               }`}
             >
-              <span>{currency}</span>
-              {currency === selectedCurrency && (
-                <FaCheck className="text-blue-600 text-sm" />
+              {/* Checkmark on the left */}
+              {currency === selectedCurrency ? (
+                <FaCheck className="text-blue-600 text-sm mr-2 -mt-0.5" />
+              ) : (
+                <div className="w-4 mr-2" /> // Placeholder for alignment
               )}
+              <span>{currency}</span>
             </div>
           ))}
         </div>
