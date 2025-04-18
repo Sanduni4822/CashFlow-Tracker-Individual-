@@ -8,14 +8,14 @@ const AddTransactionPage = () => {
   const [amount, setAmount] = useState('');
   const [selectedTags, setSelectedTags] = useState([]);
   const allTags = [
-    { name: 'Food', color: 'bg-red-100', textColor: 'text-red-700' },
-    { name: 'Transport', color: 'bg-yellow-100', textColor: 'text-yellow-700' },
-    { name: 'Entertainment', color: 'bg-purple-100', textColor: 'text-purple-700' },
-    { name: 'Bills', color: 'bg-green-100', textColor: 'text-green-700' },
-    { name: 'Shopping', color: 'bg-pink-100', textColor: 'text-pink-700' },
-    { name: 'Health', color: 'bg-blue-100', textColor: 'text-blue-700' },
-    { name: 'Travel', color: 'bg-orange-100', textColor: 'text-orange-700' },
-    { name: 'Salary', color: 'bg-teal-100', textColor: 'text-teal-700' },
+    { name: 'Food', textColor: 'text-blue-500', borderColor: 'border-blue-500' },
+    { name: 'Transport', textColor: 'text-green-500', borderColor: 'border-green-500' },
+    { name: 'Entertainment', textColor: 'text-yellow-500', borderColor: 'border-yellow-500' },
+    { name: 'Bills', textColor: 'text-green-500', borderColor: 'border-green-500' },
+    { name: 'Shopping', textColor: 'text-pink-500', borderColor: 'border-pink-500' },
+    { name: 'Health', textColor: 'text-purple-500', borderColor: 'border-purple-500' },
+    { name: 'Travel', textColor: 'text-red-500', borderColor: 'border-red-500' },
+    { name: 'Salary', textColor: 'text-orange-500', borderColor: 'border-orange-500' },
   ];
 
   const handleTagClick = (tagName) => {
@@ -85,8 +85,8 @@ const AddTransactionPage = () => {
             <button
               key={tagInfo.name}
               type="button"
-              className={`inline-block px-3 py-1 rounded-full text-sm font-semibold ${tagInfo.textColor} ${tagInfo.color} ${
-                selectedTags.includes(tagInfo.name) ? 'border-2 border-blue-500' : 'hover:bg-gray-200'
+              className={`inline-block px-3 py-1 rounded-full text-sm font-semibold ${tagInfo.textColor} border ${tagInfo.borderColor} ${
+                selectedTags.includes(tagInfo.name) ? 'border-2' : 'hover:bg-gray-100'
               }`}
               onClick={() => handleTagClick(tagInfo.name)}
             >
@@ -96,7 +96,10 @@ const AddTransactionPage = () => {
         </div>
       </div>
 
-      <button onClick={handleSubmit} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+      <button
+        onClick={handleSubmit}
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+      >
         Add Transaction
       </button>
     </div>
