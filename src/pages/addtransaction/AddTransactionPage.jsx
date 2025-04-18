@@ -7,13 +7,22 @@ const AddTransactionPage = () => {
   const [description, setDescription] = useState('');
   const [amount, setAmount] = useState('');
   const [selectedTags, setSelectedTags] = useState([]);
-  const tags = ['Food', 'Transport', 'Entertainment', 'Bills', 'Shopping', 'Health', 'Travel', 'Salary'];
+  const allTags = [
+    { name: 'Food', color: 'bg-red-100', textColor: 'text-red-700' },
+    { name: 'Transport', color: 'bg-yellow-100', textColor: 'text-yellow-700' },
+    { name: 'Entertainment', color: 'bg-purple-100', textColor: 'text-purple-700' },
+    { name: 'Bills', color: 'bg-green-100', textColor: 'text-green-700' },
+    { name: 'Shopping', color: 'bg-pink-100', textColor: 'text-pink-700' },
+    { name: 'Health', color: 'bg-blue-100', textColor: 'text-blue-700' },
+    { name: 'Travel', color: 'bg-orange-100', textColor: 'text-orange-700' },
+    { name: 'Salary', color: 'bg-teal-100', textColor: 'text-teal-700' },
+  ];
 
-  const handleTagClick = (tag) => {
-    if (selectedTags.includes(tag)) {
-      setSelectedTags(selectedTags.filter((t) => t !== tag));
+  const handleTagClick = (tagName) => {
+    if (selectedTags.includes(tagName)) {
+      setSelectedTags(selectedTags.filter((tag) => tag !== tagName));
     } else {
-      setSelectedTags([...selectedTags, tag]);
+      setSelectedTags([...selectedTags, tagName]);
     }
   };
 
@@ -72,16 +81,16 @@ const AddTransactionPage = () => {
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2">Tags (Select at least one)</label>
         <div className="flex flex-wrap gap-2">
-          {tags.map((tag) => (
+          {allTags.map((tagInfo) => (
             <button
-              key={tag}
+              key={tagInfo.name}
               type="button"
-              className={`inline-block px-3 py-1 rounded-full text-sm font-semibold text-gray-700 ${
-                selectedTags.includes(tag) ? 'bg-blue-200' : 'bg-gray-200 hover:bg-gray-300'
+              className={`inline-block px-3 py-1 rounded-full text-sm font-semibold ${tagInfo.textColor} ${tagInfo.color} ${
+                selectedTags.includes(tagInfo.name) ? 'border-2 border-blue-500' : 'hover:bg-gray-200'
               }`}
-              onClick={() => handleTagClick(tag)}
+              onClick={() => handleTagClick(tagInfo.name)}
             >
-              {tag}
+              {tagInfo.name}
             </button>
           ))}
         </div>
