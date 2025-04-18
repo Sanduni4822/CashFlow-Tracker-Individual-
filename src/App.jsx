@@ -1,17 +1,16 @@
-// Optional version with routing setup
-import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import MainLayout from './components/MainLayout';
 import HomePage from './pages/home/HomePage';
+import AddTransactionPage from './pages/addtransaction/AddTransactionPage';
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        {/* Future routes:
-        <Route path="/add" element={<AddTransaction />} />
-        <Route path="/expenses" element={<Expenses />} />
-        */}
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="add-transaction" element={<AddTransactionPage />} />
+        </Route>
       </Routes>
     </Router>
   );
