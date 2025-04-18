@@ -20,7 +20,9 @@ const FiltersBar = ({ searchTerm, setSearchTerm }) => {
       <div className="flex items-center gap-4 mb-2">
         <select className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-auto sm:text-sm border-gray-300 rounded-md py-2 px-3">
           <option>All types</option>
-          {/* Add transaction type options here */}
+          <option>Expense only</option>
+          <option>Income only</option>
+          {/* You can add more specific types if needed */}
         </select>
         <select className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-auto sm:text-sm border-gray-300 rounded-md py-2 px-3">
           <option>Greater than</option>
