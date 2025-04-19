@@ -100,7 +100,7 @@ const ManageTagsDrawer = ({ isOpen, onClose }) => {
                         <div className="w-8 h-8 rounded" style={{ backgroundColor: selectedColor }}></div>
                         <button
                             onClick={editingTagId ? handleUpdateTag : handleAddTag}
-                            className={`text-white px-4 py-2 rounded-lg hover:bg-blue-700 ${editingTagId ? 'bg-green-600' : 'bg-blue-600'}`}
+                            className={`text-white px-4 py-2 rounded-lg hover:bg-indigo-700 ${editingTagId ? 'bg-indigo-600' : 'bg-blue-600'}`}
                         >
                             {editingTagId ? 'Update' : 'Add'}
                         </button>
