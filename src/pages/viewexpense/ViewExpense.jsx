@@ -1,4 +1,4 @@
-// ViewExpense.jsx
+
 import React, { useState, useEffect } from 'react';
 import TransactionCard from '../../components/TransactionCard';
 import FiltersBar from '../../components/FiltersBar';

@@ -1,9 +1,9 @@
 import React from 'react';
 import { FaHome, FaPlusCircle, FaChartBar, FaTags } from 'react-icons/fa';
 import { useNavigate, useLocation } from 'react-router-dom';
-import NavItem from './NavItem';
+import NavItem from "./NavItem";
 
-const Sidebar = () => {
+const Sidebar = ({ openDrawer }) => {
   const navigate = useNavigate();
   const location = useLocation(); 
 
@@ -32,8 +32,8 @@ const Sidebar = () => {
         <NavItem
           icon={<FaTags />}
           text="Manage Tags"
-          onClick={() => navigate('/manage-tags')} 
-          active={location.pathname === '/manage-tags'} 
+          onClick={openDrawer}
+          active={false} // No route
         />
       </nav>
     </aside>
