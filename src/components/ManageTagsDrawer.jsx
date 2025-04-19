@@ -39,35 +39,33 @@ const ManageTagsDrawer = ({ isOpen, onClose }) => {
   };
 
   return (
-    <div className={`fixed inset-0 z-50 flex items-center justify-end transition-opacity duration-300 ${
+    <div className={`fixed inset-0 z-50 flex justify-end transition-opacity duration-300 ${
       isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
     }`}>
       {/* Overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-50" onClick={onClose}></div>
 
-      {/* Drawer */}
-      <div className="relative h-full w-96 max-w-full bg-white shadow-xl overflow-hidden flex flex-col">
+      {/* Drawer - positioned as a modal in the center */}
+      <div className="fixed top-0 right-0 bottom-0 w-96 max-w-full bg-white shadow-xl flex flex-col">
         {/* Header */}
-        <div className="flex justify-between items-center p-4 border-b">
-          <h2 className="text-xl font-semibold">Manage Tags</h2>
+        <div className="flex justify-between items-center p-4">
+          <h2 className="text-xl font-bold">Manage Tags</h2>
           <button onClick={onClose} className="text-gray-500 hover:text-black">
             ✕
           </button>
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-6">
+        <div className="flex-1 overflow-y-auto p-4">
           {/* Add Tag */}
-          <div className="flex items-center gap-2">
-            <div className="relative flex-1">
-              <input
-                type="text"
-                value={newTagName}
-                onChange={(e) => setNewTagName(e.target.value)}
-                placeholder="Tag name"
-                className="w-full border border-gray-300 rounded-lg p-2 pl-3"
-              />
-            </div>
+          <div className="flex items-center gap-2 mb-6">
+            <input
+              type="text"
+              value={newTagName}
+              onChange={(e) => setNewTagName(e.target.value)}
+              placeholder="Tag name"
+              className="flex-1 border border-blue-400 rounded-lg p-2"
+            />
             <div className="w-8 h-8 bg-blue-500 rounded"></div>
             <button 
               onClick={handleAddTag}
@@ -78,19 +76,19 @@ const ManageTagsDrawer = ({ isOpen, onClose }) => {
           </div>
 
           {/* Tag List */}
-          <div className="space-y-3">
+          <div className="space-y-1">
             {tags.map((tag) => (
-              <div key={tag.id} className="flex items-center justify-between py-2">
+              <div key={tag.id} className="flex items-center justify-between py-3 px-1 bg-gray-50 rounded">
                 <div className="flex items-center gap-2">
                   <div 
                     className="w-4 h-4 rounded-full" 
                     style={{ backgroundColor: tag.color }}
                   ></div>
-                  <span className="text-base">{tag.name}</span>
+                  <span>{tag.name}</span>
                 </div>
                 <div className="flex items-center space-x-4">
-                  <button className="text-blue-600 hover:underline">Edit</button>
-                  <button className="text-red-500 hover:underline">Delete</button>
+                  <button className="text-blue-600">Edit</button>
+                  <button className="text-red-500">Delete</button>
                 </div>
               </div>
             ))}
