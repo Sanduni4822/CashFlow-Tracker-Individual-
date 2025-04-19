@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
+import { ChromePicker } from 'react-color';
 
 const ManageTagsDrawer = ({ isOpen, onClose }) => {
     const [newTagName, setNewTagName] = useState('');
@@ -16,6 +17,7 @@ const ManageTagsDrawer = ({ isOpen, onClose }) => {
     const [editingTagId, setEditingTagId] = useState(null);
     const [editText, setEditText] = useState('');
     const [selectedColor, setSelectedColor] = useState('#3b82f6'); // Default color
+    const [showColorPicker, setShowColorPicker] = useState(false);
 
     useEffect(() => {
         const handleKeyDown = (e) => {
@@ -35,6 +37,7 @@ const ManageTagsDrawer = ({ isOpen, onClose }) => {
             };
             setTags([...tags, newTag]);
             setNewTagName('');
+            setShowColorPicker(false); // Hide color picker after adding
         }
     };
 
@@ -44,6 +47,7 @@ const ManageTagsDrawer = ({ isOpen, onClose }) => {
         setSelectedColor(color);
         setNewTagName(name); // Populate input for editing
         setTags(tags.map(tag => tag.id === id ? { ...tag, isEditing: true } : tag));
+        setShowColorPicker(true); // Show color picker on edit
     };
 
     const handleUpdateTag = () => {
@@ -54,6 +58,7 @@ const ManageTagsDrawer = ({ isOpen, onClose }) => {
             setEditingTagId(null);
             setEditText('');
             setNewTagName('');
+            setShowColorPicker(false); // Hide color picker after update
         }
     };
 
@@ -61,9 +66,12 @@ const ManageTagsDrawer = ({ isOpen, onClose }) => {
         setTags(tags.filter(tag => tag.id !== id));
     };
 
-    const getRandomColor = () => {
-        const colors = ['#3b82f6', '#10b981', '#f59e0b', '#6366f1', '#ec4899', '#8b5cf6', '#ef4444', '#f97316'];
-        return colors[Math.floor(Math.random() * colors.length)];
+    const handleColorChange = (color) => {
+        setSelectedColor(color.hex);
+    };
+
+    const toggleColorPicker = () => {
+        setShowColorPicker(!showColorPicker);
     };
 
     return (
@@ -86,24 +94,38 @@ const ManageTagsDrawer = ({ isOpen, onClose }) => {
                 {/* Content */}
                 <div className="flex-1 overflow-y-auto p-4">
                     {/* Add/Update Tag */}
-                    <div className="flex items-center gap-2 mb-6">
-                        <input
-                            type="text"
-                            value={newTagName}
-                            onChange={(e) => {
-                                setNewTagName(e.target.value);
-                                if (editingTagId) setEditText(e.target.value); // Update editText if editing
-                            }}
-                            placeholder="Tag name"
-                            className="flex-1 border border-blue-400 rounded-lg p-2"
-                        />
-                        <div className="w-8 h-8 rounded" style={{ backgroundColor: selectedColor }}></div>
-                        <button
-                            onClick={editingTagId ? handleUpdateTag : handleAddTag}
-                            className={`text-white px-4 py-2 rounded-lg hover:bg-indigo-700 ${editingTagId ? 'bg-indigo-600' : 'bg-blue-600'}`}
-                        >
-                            {editingTagId ? 'Update' : 'Add'}
-                        </button>
+                    <div className="mb-6">
+                        <div className="flex items-center gap-2 mb-2">
+                            <label htmlFor="new-tag-name" className="sr-only">Tag name</label>
+                            <input
+                                type="text"
+                                id="new-tag-name"
+                                value={newTagName}
+                                onChange={(e) => {
+                                    setNewTagName(e.target.value);
+                                    if (editingTagId) setEditText(e.target.value); // Update editText if editing
+                                }}
+                                placeholder="New Tag"
+                                className="flex-1 border border-blue-400 rounded-md p-2"
+                            />
+                            <button
+                                type="button" // Ensure this button doesn't submit a form
+                                className="w-8 h-8 rounded cursor-pointer"
+                                style={{ backgroundColor: selectedColor }}
+                                onClick={toggleColorPicker}
+                            ></button>
+                            <button
+                                onClick={editingTagId ? handleUpdateTag : handleAddTag}
+                                className={`text-white px-4 py-2 rounded-md hover:bg-indigo-700 ${editingTagId ? 'bg-indigo-600' : 'bg-blue-600'}`}
+                            >
+                                {editingTagId ? 'Update' : 'Add'}
+                            </button>
+                        </div>
+                        {showColorPicker && (
+                            <div className="absolute z-10 mt-2">
+                                <ChromePicker color={selectedColor} onChange={handleColorChange} />
+                            </div>
+                        )}
                     </div>
 
                     {/* Tag List */}
