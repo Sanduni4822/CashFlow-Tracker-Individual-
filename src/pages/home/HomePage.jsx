@@ -3,14 +3,20 @@ import BalanceCard from '../../components/BalanceCard';
 import StatCard from '../../components/StatCard';
 import ActionsButtons from '../../components/ActionsButtons';
 import CurrencySelector from '../../components/CurrencySelector';
+import { useCurrency } from '../../components/CurrencyContext';
 import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const { currency } = useCurrency();
 
-  const handleAddTransactionClick = () => {
-    navigate('/add-transaction');
-  };
+  // Raw values in CAD (base)
+  const incomeCAD = 3995.89;
+  const expenseCAD = 221.45;
+
+  const convertedIncome = (incomeCAD * currency.rate).toFixed(2);
+  const convertedExpense = (expenseCAD * currency.rate).toFixed(2);
+  const balance = (convertedIncome - convertedExpense).toFixed(2);
 
   return (
     <>
@@ -22,16 +28,16 @@ const HomePage = () => {
         </p>
       </div>
 
-      <BalanceCard balance="+CA$3,774.44" />
+      <BalanceCard balance={`${currency.symbol}${balance}`} />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        <StatCard label="Income" value="CA$3,995.89" color="text-green-600" />
-        <StatCard label="Expenses" value="CA$221.45" color="text-red-600" />
+        <StatCard label="Income" value={`${currency.symbol}${convertedIncome}`} color="text-green-600" />
+        <StatCard label="Expenses" value={`${currency.symbol}${convertedExpense}`} color="text-red-600" />
       </div>
 
       <ActionsButtons
-           onAddTransactionClick={() => navigate('/add-transaction')}
-           onViewTransactionsClick={() => console.log('View Transactions clicked')}
+        onAddTransactionClick={() => navigate('/add-transaction')}
+        onViewTransactionsClick={() => console.log('View Transactions clicked')}
       />
 
       <CurrencySelector />
