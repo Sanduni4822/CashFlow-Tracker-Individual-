@@ -7,8 +7,8 @@ const StatCard = ({ label, value, icon, color, bgColor }) => {
         <h4 className="text-gray-500 font-semibold">{label}</h4>
         <p className={`text-2xl font-bold ${color}`}>{value}</p>
       </div>
-      <div className={`w-14 h-14 flex items-center justify-center rounded-full ${bgColor}`}>
-        <div className={`text-3xl ${color}`}>
+      <div className={`w-10 h-10 flex items-center justify-center rounded-full ${bgColor}`}>
+        <div className={`text-lg ${color}`}> {/* Smaller icon size */}
           {icon}
         </div>
       </div>
