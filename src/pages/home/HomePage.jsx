@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import BalanceCard from '../../components/BalanceCard';
 import StatCard from '../../components/StatCard';
@@ -7,7 +5,7 @@ import ActionsButtons from '../../components/ActionsButtons';
 import CurrencySelector from '../../components/CurrencySelector';
 import { useCurrency } from '../../components/CurrencyContext';
 import { useNavigate } from 'react-router-dom';
-import { LuTrendingUp, LuTrendingDown } from 'react-icons/lu'; // ✅ NEW ICONS
+import { LuTrendingUp, LuTrendingDown } from 'react-icons/lu';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -38,13 +36,15 @@ const HomePage = () => {
           label="Income"
           value={`${currency.symbol}${convertedIncome}`}
           color="text-green-600"
-          icon={<LuTrendingUp />} // ✅ UPDATED ICON
+          bgColor="bg-green-100"
+          icon={<LuTrendingUp />}
         />
         <StatCard
           label="Expenses"
           value={`${currency.symbol}${convertedExpense}`}
           color="text-red-600"
-          icon={<LuTrendingDown />} // ✅ UPDATED ICON
+          bgColor="bg-red-100"
+          icon={<LuTrendingDown />}
         />
       </div>
 
