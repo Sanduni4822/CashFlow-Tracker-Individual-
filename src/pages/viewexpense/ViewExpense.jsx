@@ -1,25 +1,24 @@
-
 import React, { useState, useEffect } from 'react';
 import TransactionCard from '../../components/TransactionCard';
 import FiltersBar from '../../components/FiltersBar';
 
 const dummyTransactions = [
-  { id: 1, description: 'Testing one', amount: 200.00, date: '2025-04-01' },
-  { id: 2, description: 'fsfdfd', amount: -34555.00, date: '2025-04-01' },
+  { id: 1, description: 'Testing one', amount: 200.0, date: '2025-04-01' },
+  { id: 2, description: 'fsfdfd', amount: -34555.0, date: '2025-04-01' },
   { id: 3, description: 'Grocery shopping', amount: -45.89, date: '2025-04-01' },
-  { id: 4, description: 'Monthly salary', amount: 3200.00, date: '2025-04-03' },
-  { id: 5, description: 'Dinner at restaurant', amount: -78.50, date: '2025-04-03' },
+  { id: 4, description: 'Monthly salary', amount: 3200.0, date: '2025-04-03' },
+  { id: 5, description: 'Dinner at restaurant', amount: -78.5, date: '2025-04-03' },
   { id: 6, description: 'Uber ride', amount: -12.75, date: '2025-04-02' },
-  { id: 7, description: 'Movie tickets', amount: -25.00, date: '2025-04-04' },
+  { id: 7, description: 'Movie tickets', amount: -25.0, date: '2025-04-04' },
   { id: 8, description: 'Electricity bill', amount: -95.25, date: '2025-04-05' },
-  { id: 9, description: 'Freelance project', amount: 400.00, date: '2025-04-06' },
+  { id: 9, description: 'Freelance project', amount: 400.0, date: '2025-04-06' },
 ];
 
 const ViewExpense = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [transactionType, setTransactionType] = useState('All types');
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5; // Adjusted to match the image
+  const itemsPerPage = 5;
 
   const filteredTransactions = dummyTransactions.filter((t) => {
     const matchesSearch = t.description.toLowerCase().includes(searchTerm.toLowerCase());
@@ -73,32 +72,34 @@ const ViewExpense = () => {
         <div className="mt-6 flex justify-center items-center gap-2">
           <button
             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-            className={`px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100 focus:outline-none ${
+            disabled={currentPage === 1}
+            className={`text-sm font-medium px-2 py-1 text-gray-600 hover:text-black transition ${
               currentPage === 1 ? 'cursor-not-allowed text-gray-400' : ''
             }`}
-            disabled={currentPage === 1}
           >
             &lt; Previous
           </button>
+
           {Array.from({ length: totalPages }, (_, i) => (
             <button
               key={i + 1}
               onClick={() => setCurrentPage(i + 1)}
-              className={`px-3 py-2 rounded-md ${
+              className={`w-9 h-9 rounded-md text-sm font-medium border ${
                 currentPage === i + 1
-                  ? 'bg-indigo-600 text-white'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  ? 'border-gray-300 bg-white shadow text-black'
+                  : 'border-transparent text-gray-500 hover:bg-gray-100'
               }`}
             >
               {i + 1}
             </button>
           ))}
+
           <button
             onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-            className={`px-3 py-2 rounded-md text-gray-600 hover:bg-gray-100 focus:outline-none ${
+            disabled={currentPage === totalPages}
+            className={`text-sm font-medium px-2 py-1 text-gray-600 hover:text-black transition ${
               currentPage === totalPages ? 'cursor-not-allowed text-gray-400' : ''
             }`}
-            disabled={currentPage === totalPages}
           >
             Next &gt;
           </button>
