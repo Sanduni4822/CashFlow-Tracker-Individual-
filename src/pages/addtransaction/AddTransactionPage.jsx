@@ -41,21 +41,36 @@ const AddTransactionPage = () => {
         <label className="block text-gray-700 text-sm font-bold mb-2">Transaction Type</label>
         <div>
           <label className="inline-flex items-center mr-4">
-            <input type="radio" className="form-radio" name="transactionType" value="expense" checked={transactionType === 'expense'} onChange={(e) => setTransactionType(e.target.value)} />
+            <input
+              type="radio"
+              className="form-radio"
+              name="transactionType"
+              value="expense"
+              checked={transactionType === 'expense'}
+              onChange={(e) => setTransactionType(e.target.value)}
+            />
             <span className="ml-2">Expense</span>
           </label>
           <label className="inline-flex items-center">
-            <input type="radio" className="form-radio" name="transactionType" value="income" checked={transactionType === 'income'} onChange={(e) => setTransactionType(e.target.value)} />
+            <input
+              type="radio"
+              className="form-radio"
+              name="transactionType"
+              value="income"
+              checked={transactionType === 'income'}
+              onChange={(e) => setTransactionType(e.target.value)}
+            />
             <span className="ml-2">Income</span>
           </label>
         </div>
       </div>
 
+      {/* Updated Description Field */}
       <div className="mb-3">
         <label className="block text-gray-700 text-sm font-bold mb-2">Description</label>
-        <input
-          type="text"
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        <textarea
+          rows={3}
+          className="w-full rounded-lg border border-gray-200 bg-gray-50 p-4 text-sm text-gray-700 focus:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-200"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           placeholder="What was this transaction for?"
