@@ -73,8 +73,10 @@ const ViewExpense = () => {
           <button
             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
             disabled={currentPage === 1}
-            className={`text-sm font-medium px-2 py-1 text-gray-600 hover:text-black transition ${
-              currentPage === 1 ? 'cursor-not-allowed text-gray-400' : ''
+            className={`text-sm font-medium px-2 py-1 transition ${
+              currentPage === 1
+                ? 'text-gray-400 cursor-not-allowed'
+                : 'text-gray-500 hover:text-gray-700'
             }`}
           >
             &lt; Previous
@@ -84,10 +86,10 @@ const ViewExpense = () => {
             <button
               key={i + 1}
               onClick={() => setCurrentPage(i + 1)}
-              className={`w-9 h-9 rounded-md text-sm font-medium border ${
+              className={`w-9 h-9 rounded-md text-sm font-medium border transition ${
                 currentPage === i + 1
                   ? 'border-gray-300 bg-white shadow text-black'
-                  : 'border-transparent text-gray-500 hover:bg-gray-100'
+                  : 'border-transparent text-black hover:bg-gray-100'
               }`}
             >
               {i + 1}
@@ -97,8 +99,10 @@ const ViewExpense = () => {
           <button
             onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
             disabled={currentPage === totalPages}
-            className={`text-sm font-medium px-2 py-1 text-gray-600 hover:text-black transition ${
-              currentPage === totalPages ? 'cursor-not-allowed text-gray-400' : ''
+            className={`text-sm font-medium px-2 py-1 transition ${
+              currentPage === totalPages
+                ? 'text-gray-400 cursor-not-allowed'
+                : 'text-black hover:text-gray-800'
             }`}
           >
             Next &gt;
